@@ -26,11 +26,6 @@ const Stud = mongoose.model('Stud', userSchema);
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public")));
-
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 
 app.get('/', async (req, res) => {
   try {
@@ -65,7 +60,7 @@ app.put('/update/:id', async(req,res)=>{
 app.delete("/delete/:id", async(req,res)=>{
   const {id}=req.params
     try{
-        const reslut = await User.findByIdAndDelete(id)
+        const reslut = await Stud.findByIdAndDelete(id)
         res.status(200).json({message:'deleted successfuly'})
     }catch(err){
         res.status(500).json({message : err})
